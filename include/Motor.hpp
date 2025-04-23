@@ -4,7 +4,7 @@ class Motor
 {
 public:
 	Motor(void);
-	void Drive(const int speedRight, const int speedLeft);
+	void Drive(const int speedLeft, const int speedRight);
 
 private:
 	const int PIN_Motor_PWMA = 5;

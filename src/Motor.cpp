@@ -26,24 +26,28 @@ Motor::Motor(void)
  * are put into standby mode. Otherwise, the motors are activated, and the specified
  * speeds are applied.
  *
- * @param speedRight The speed for the right motors (range: -MAX_SPEED to MAX_SPEED).
  * @param speedLeft The speed for the left motors (range: -MAX_SPEED to MAX_SPEED).
+ * @param speedRight The speed for the right motors (range: -MAX_SPEED to MAX_SPEED).
  */
-void Motor::Drive(const int speedRight, const int speedLeft)
+void Motor::Drive(const int speedLeft, const int speedRight)
 {
 	// Validate speeds
 	if (speedRight > MAX_SPEED || speedRight < -MAX_SPEED || speedLeft > MAX_SPEED || speedLeft < -MAX_SPEED) {
+#ifndef NDEBUG
 		Serial.print("Invalid speeds - Right: ");
 		Serial.print(speedRight);
 		Serial.print(", Left: ");
 		Serial.println(speedLeft);
+#endif
 		return;
 	}
 
+#ifndef NDEBUG
 	Serial.print("Setting speeds - Right: ");
 	Serial.print(speedRight);
 	Serial.print(", Left: ");
 	Serial.println(speedLeft);
+#endif
 
 	// Handle zero-speed case
 	if (speedRight == 0 && speedLeft == 0) {
